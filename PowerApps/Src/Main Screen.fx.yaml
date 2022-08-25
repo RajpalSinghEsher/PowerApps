@@ -1,0 +1,156 @@
+"'Main Screen' As screen":
+
+    Label1 As label:
+        Align: =Center
+        Color: =RGBA(255, 255, 0, 1)
+        Fill: =RGBA(0, 134, 208, 1)
+        Height: =50
+        Size: =16
+        Text: ="Device Ordering"
+        Width: =300
+        X: =476
+        Y: =40
+        ZIndex: =1
+
+    Label2 As label:
+        Fill: =RGBA(246, 88, 16, 1)
+        FontWeight: =Bold
+        Height: =50
+        Size: =16
+        Text: ="Hello " & User().FullName
+        Width: =261
+        X: =776
+        Y: =40
+        ZIndex: =2
+
+    "DeviceGallery As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver4.0'":
+        Height: =588
+        Items: =Devices
+        TemplatePadding: =0
+        TemplateSize: =227
+        Width: =1052
+        WrapCount: =2
+        X: =279
+        Y: =131
+        ZIndex: =3
+
+        Image1 As image:
+            Height: =155
+            Image: =ThisItem.Photo
+            OnSelect: =Select(Parent)
+            Width: =204
+            X: =12
+            Y: =9
+            ZIndex: =1
+
+        Title1 As label:
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Title
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 64
+            X: =32
+            Y: =Image1.Y + Image1.Height + 16
+            ZIndex: =2
+
+        Subtitle1 As label:
+            Color: =If(Price>1000,OrangeRed,Gray)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                =Text(ThisItem.Price,"₹##,###.00")
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title1.Width
+            X: =Title1.X
+            Y: =Title1.Y + Title1.Height + 8
+            ZIndex: =3
+
+        Checkbox2 As checkbox:
+            Default: =ThisItem in CompareList
+            OnCheck: =Collect(CompareList,ThisItem)
+            OnSelect: =Select(Parent)
+            Text: ="Compare"
+            X: =32
+            Y: =246
+            ZIndex: =4
+
+    "ManufacturerGallery As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =707
+        Items: =Manufacturers.Logo
+        Layout: =Layout.Vertical
+        TemplateFill: =If(ThisItem.IsSelected,ColorFade(Label1.Fill,75%))
+        TemplatePadding: =0
+        TemplateSize: =Min(160, Self.Height - 60)
+        Width: =202
+        X: =69
+        Y: =60
+        ZIndex: =4
+
+        Image2 As image:
+            Height: =128
+            Image: =ThisItem.Logo
+            OnSelect: =Select(Parent)
+            Width: =128
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        Title2 As label:
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Logo
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - Image2.Width - 104
+            X: =Image2.X + Image2.Width + 24
+            Y: =44
+            ZIndex: =2
+
+        Subtitle2 As label:
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Logo
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title2.Width
+            X: =Title2.X
+            Y: =Title2.Y + Title2.Height + 4
+            ZIndex: =3
+
+        NextArrow1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Height: =60
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            TabIndex: =0
+            Tooltip: ="View item details"
+            Width: =60
+            X: =Parent.TemplateWidth - Self.Width - 5
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =4
+
+        Separator1 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
